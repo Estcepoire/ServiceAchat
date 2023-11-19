@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "JcMYUwFAWPKuEs6Iz5wqk4guttJN+QFHbqjhot45+VW4wxKjau86/3Zpigu4SJNredqk8/2Zpb/nCEY7+awMuA==",
+  "success": true,
+  "projectFilePath": "D:\\S5\\ACHAT\\ACHAT.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\LENOVO\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.0\\microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\LENOVO\\.nuget\\packages\\npgsql\\7.0.6\\npgsql.7.0.6.nupkg.sha512"
+  ],
+  "logs": []
+}
