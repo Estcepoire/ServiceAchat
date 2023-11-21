@@ -7,18 +7,16 @@ create table departement(
 );
 
 insert into departement values (default,'securite');
-insert into departement values (default,'sante');
-insert into departement values (default,'bureautique');
 
 create table produit(
     id SERIAL PRIMARY KEY,
-    nom VARCHAR(50)
+    nom VARCHAR(50),
+    unite VARCHAR(50)
 );
 
-insert into produit values (default,'cache bouche');
-insert into produit values (default,'stylo');
-insert into produit values (default,'cahier');
-insert into produit values (default,'marker');
+
+insert into produit values (default,'cache bouche','boite');
+insert into produit values (default,'stylo','unite');
 
 create table unite(
     id SERIAL PRIMARY KEY,
@@ -30,13 +28,11 @@ insert into unite values(default,'boite');
 
 create table besoins(
     id SERIAL PRIMARY KEY,
-    id_departement int,
-    it_produit int,
+    id_departement int REFERENCES departement(id),
+    it_produit int REFERENCES produit(id),
     quantite DOUBLE PRECISION,
-    unite VARCHAR(50),
-    etat VARCHAR(50),
-    FOREIGN KEY(id_departement) REFERENCES departement(id),
-    FOREIGN KEY(id_produit) REFERENCES produit(id),
+    etat VARCHAR(50) default '0',
+    dates date default now()
 );
 
 create view all_besoins as (SELECT b.id, p.nom as nom_produit, d.nom as nom_departement, b.unite, b.etat FROM besoins b JOIN produit p on b.id_produit = p.id JOIN departement d ON d.id_departement = d.id);
@@ -87,17 +83,30 @@ insert into fournisseur_produit values(default,2,2,18000,'2023-11-15');
 create view all_fournisseur_produit as (SELECT fp.id,f.nom as nom_fournisseur,p.nom as nom_produit, fp.prix, u.nom, fp.date FROM fournisseur_produit fp JOIN fournisseur f on fp.id_fournisseur = f.id JOIN produit p on fp.id_produit = p.id JOIN unite u ON fp.id_unite = u.id);
 
 
+-- create table proforma(
+--     id SERIAL PRIMARY KEY,
+--     id_produit int,
+--     id_fournisseur int,
+--     quantite DOUBLE PRECISION,
+--     id_unite int,
+--     prix_total DOUBLE PRECISION,
+--     FOREIGN KEY(id_produit) REFERENCES produit(id),
+--     FOREIGN KEY(id_fournisseur) REFERENCES fournisseur(id),
+--     FOREIGN KEY(id_unite) REFERENCES unite(id)
+-- );
+
 create table proforma(
     id SERIAL PRIMARY KEY,
     id_produit int,
     id_fournisseur int,
-    quantite DOUBLE PRECISION,
-    id_unite int,
     prix_total DOUBLE PRECISION,
+    date DATE,
+    quantite DOUBLE PRECISION,
     FOREIGN KEY(id_produit) REFERENCES produit(id),
-    FOREIGN KEY(id_fournisseur) REFERENCES fournisseur(id),
-    FOREIGN KEY(id_unite) REFERENCES unite(id)
+    FOREIGN KEY(id_fournisseur) REFERENCES fournisseur(id)
 );
+
+create view v_proforma as (SELECT p.id, pr.nom as nom_produit, f.nom as nom_fournisseur, p.prix_total, p.date, p.quantite FROM proforma p JOIN produit pr ON p.id_produit = pr.id JOIN fournisseur f ON p.id_fournisseur = f.id);
 
 
 

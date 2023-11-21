@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "JcMYUwFAWPKuEs6Iz5wqk4guttJN+QFHbqjhot45+VW4wxKjau86/3Zpigu4SJNredqk8/2Zpb/nCEY7+awMuA==",
+  "dgSpecHash": "vlCIdNAS4ncMfD2MSSZjSNc2a/ExM/RQx2JoHWfSY9sZzT7dhV4oHS/lwrAtpEA+wVlgrWUA7nun6IxjYKK5TA==",
   "success": true,
-  "projectFilePath": "D:\\S5\\ACHAT\\ACHAT.csproj",
+  "projectFilePath": "E:\\ITU\\Tovo\\ServiceAchat\\ACHAT\\ACHAT.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\LENOVO\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.0\\microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
-    "C:\\Users\\LENOVO\\.nuget\\packages\\npgsql\\7.0.6\\npgsql.7.0.6.nupkg.sha512"
+    "C:\\Users\\ASUS\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.0\\microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\ASUS\\.nuget\\packages\\npgsql\\7.0.6\\npgsql.7.0.6.nupkg.sha512",
+    "C:\\Users\\ASUS\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
   ],
   "logs": []
 }

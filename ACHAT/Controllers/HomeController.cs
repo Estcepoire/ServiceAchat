@@ -15,9 +15,9 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        return View();
+        var data = Besoin.getAllValider();
+        return View("Index",data);
     }
-
     public IActionResult Privacy()
     {
         return View();

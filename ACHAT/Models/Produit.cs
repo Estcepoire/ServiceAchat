@@ -7,23 +7,28 @@ public class Produit
 {
     public int id { get; set; }
     public string name { get; set; }
+    public string unite { get; set; }
 
     public Produit() { }
 
-    public List<String> getName()
+    public static List<Produit> getAll()
     {
-        List<String> nom = new List<String>();
+        List<Produit> nom = new List<Produit>();
 
         using NpgsqlConnection connection = Connect.GetSqlConnection();
         connection.Open();
-        string query = "SELECT nom FROM produit";
+        string query = "SELECT * FROM produit";
         using (NpgsqlCommand command = new NpgsqlCommand(query, connection))
         {
             using (NpgsqlDataReader reader = command.ExecuteReader())
             {
                 while (reader.Read())
                 {
-                    nom.Add(reader.GetString(0));
+                    Produit p = new Produit();
+                    p.id = reader.GetInt32(0);
+                    p.name = reader.GetString(1);
+                    p.unite = reader.GetString(2);
+                    nom.Add(p);
                 }
             }
         }
@@ -31,25 +36,26 @@ public class Produit
         return nom;
     }
 
-    public int getIdByName(String nom)
+    public static Produit getIdBy(int id)
     {
-        int id = 0;
-
+        Produit p = new Produit();
         using NpgsqlConnection connection = Connect.GetSqlConnection();
         connection.Open();
-        string query = "SELECT id FROM produit where nom ='" + nom + "'";
+        string query = "SELECT * FROM produit where id =" + id + "";
         using (NpgsqlCommand command = new NpgsqlCommand(query, connection))
         {
             using (NpgsqlDataReader reader = command.ExecuteReader())
             {
                 while (reader.Read())
                 {
-                    id = reader.GetInt32(0);
+                    p.id = reader.GetInt32(0);
+                    p.name = reader.GetString(1);
+                    p.unite = reader.GetString(2);
                 }
             }
         }
         connection.Close();
-        return id;
+        return p;
     }
 
 }

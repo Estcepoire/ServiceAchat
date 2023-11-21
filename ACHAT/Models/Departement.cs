@@ -10,46 +10,29 @@ public class Departement
 
     public Departement() { }
 
-    public List<String> getName()
+    public static List<Departement> getAll()
     {
-        List<String> mail = new List<String>();
+        List<Departement> dep = new List<Departement>();
 
         using NpgsqlConnection connection = Connect.GetSqlConnection();
         connection.Open();
-        string query = "SELECT nom FROM departement";
+        string query = "SELECT * FROM departement";
         using (NpgsqlCommand command = new NpgsqlCommand(query, connection))
         {
             using (NpgsqlDataReader reader = command.ExecuteReader())
             {
                 while (reader.Read())
                 {
-                    mail.Add(reader.GetString(0));
+                    Departement d = new Departement();
+                    d.id=reader.GetInt32(0);
+                    d.name=reader.GetString(1);
+                    dep.Add(d);
                 }
             }
         }
         connection.Close();
-        return mail;
+        return dep;
     }
 
-    public int getIdByName(String nom)
-    {
-        int id= 0;
-
-        using NpgsqlConnection connection = Connect.GetSqlConnection();
-        connection.Open();
-        string query = "SELECT id FROM departement where nom ='"+nom+"'";
-        using (NpgsqlCommand command = new NpgsqlCommand(query, connection))
-        {
-            using (NpgsqlDataReader reader = command.ExecuteReader())
-            {
-                while (reader.Read())
-                {
-                    id = reader.GetInt32(0);
-                }
-            }
-        }
-        connection.Close();
-        return id;
-    }
 
 }

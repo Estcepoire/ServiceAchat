@@ -42,7 +42,7 @@ public class Fournisseur
         return nom;
     }
 
-    public List<Fournisseur> getAllFournisseur()
+    public static List<Fournisseur> getAllFournisseur()
     {
         List<Fournisseur> fournisseurs = new List<Fournisseur>();
 
